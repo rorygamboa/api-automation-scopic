@@ -108,9 +108,10 @@ test('Deck of Cards API', async ({ request }) => {
 
     await test.step('Create a pile of 5 cards ', async() => {
         // Create first pile of 5
+        const draw5 = await request.get(`https://www.deckofcardsapi.com/api/deck/${myDeck}/draw/?count=5`);
         const firstPile = await request.get(`https://www.deckofcardsapi.com/api/deck/${myDeck}/pile/pile1/add/?cards=as,2s,3s,4s,5s`);
         const deckInfo = await firstPile.json();
-        console.log(deckInfo);
+        // console.log(deckInfo);
 
         // Check if request returned a successfull response
         await checkIfSuccess(firstPile);
@@ -124,9 +125,10 @@ test('Deck of Cards API', async ({ request }) => {
 
     await test.step('Create another pile of 5 cards', async() => {
         // Create second pile of 5
+        const draw5 = await request.get(`https://www.deckofcardsapi.com/api/deck/${myDeck}/draw/?count=5`);
         const secondPile = await request.get(`https://www.deckofcardsapi.com/api/deck/${myDeck}/pile/pile2/add/?cards=6s,7s,8s,9s,0s`);
         const deckInfo = await secondPile.json();
-        // console.log(`Pile 1: ${deckInfo}`);
+        // console.log(deckInfo);
 
         // Check if request returned a successfull response
         await checkIfSuccess(secondPile);
@@ -142,7 +144,7 @@ test('Deck of Cards API', async ({ request }) => {
         // Shuffle pile1
         const shuffleFirstPile = await request.get(`https://www.deckofcardsapi.com/api/deck/${myDeck}/pile/pile1/shuffle/`);
         const deckInfo = await shuffleFirstPile.json();
-        // console.log(`Pile 1: ${deckInfo}`);
+        // console.log(deckInfo);
 
         // Check if request returned a successfull response
         await checkIfSuccess(shuffleFirstPile);
@@ -155,7 +157,7 @@ test('Deck of Cards API', async ({ request }) => {
         // Draw 3 from pile1
         const drawFromPile1 = await request.get(`https://www.deckofcardsapi.com/api/deck/${myDeck}/pile/pile1/draw/random/?count=3`);
         const deckInfo = await drawFromPile1.json();
-        // console.log(`Pile 1: ${deckInfo}`);
+        // console.log(deckInfo);
 
         // Check if request returned a successfull response
         await checkIfSuccess(drawFromPile1);
@@ -168,7 +170,7 @@ test('Deck of Cards API', async ({ request }) => {
         // Draw 2 from pile2
         const drawFromPile2 = await request.get(`https://www.deckofcardsapi.com/api/deck/${myDeck}/pile/pile2/draw/random/?count=2`);
         const deckInfo = await drawFromPile2.json();
-        // cog(nsole.lo`Pile 2: ${deckInfo}`);
+        // console.log(deckInfo);
 
         // Check if request returned a successfull response
         await checkIfSuccess(drawFromPile2);
